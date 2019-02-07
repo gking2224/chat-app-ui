@@ -1,6 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 const root = path.resolve(__dirname, '.');
 const dirs = {
@@ -36,9 +36,11 @@ const webpackConfig = isProd => ({
     new HtmlWebpackPlugin({
       template: path.resolve(dirs.src, 'html/index.html'),
     }),
-    new webpack.DefinePlugin({
-      'process.env.GET_MESSAGES_URL': JSON.stringify(process.env.GET_MESSAGES_URL),
-    }),
+    new DotenvPlugin(),
+    // new webpack.DefinePlugin({
+    //   'process.env.GET_MESSAGES_URL': JSON.stringify(process.env.GET_MESSAGES_URL),
+    //   'process.env.WS_ENDPOINT': JSON.stringify(process.env.WS_ENDPOINT),
+    // }),
   ],
 });
 

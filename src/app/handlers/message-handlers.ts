@@ -1,15 +1,9 @@
 import { Message } from "../model/domain/message";
+import { GetMessagesResponse } from "../model/api/messages";
+import { join } from "path";
 
 export const getMessages = async (): Promise<Message[]> => {
-  const headers = {};
-  const request = {
-    url: process.env.GET_MESSAGES_URL,
-    method: 'GET',
-    headers
-  };
-  // fetch(request)
-  //   .then((response) => {
-
-  //   });
-  return Promise.resolve([]);
+  return fetch(process.env.GET_MESSAGES_URL)
+    .then((response) => (response.json() as any) as GetMessagesResponse)
+    .then(m => m.messages);
 }

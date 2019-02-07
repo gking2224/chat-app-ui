@@ -1,12 +1,20 @@
 import * as React from 'react';
 
-export const WebsocketContext = React.createContext(null);
+export const WebsocketContext = React.createContext<WebSocket | null>(null);
 
-export default (Component: React.ComponentType<any>) => {
-  const HocComponent = (props: any) => {
+export interface WebsocketProps<S, R> {
+  connection: WebSocket;
+  send: (data: S) => void;
+}
+
+export default <P, S, R>(Component: React.ComponentType<P & WebsocketProps<S, R>>): React.ComponentType<P> => {
+  const HocComponent = (props: P) => (
     <WebsocketContext.Consumer>
-      {connection => <Component {...props} connection={connection} />}
+      {(connection) => {
+        const onSend = (message: S) => connection.send(JSON.stringify(message));
+        return <Component {...props} connection={connection} send={onSend} />;
+      }}
     </WebsocketContext.Consumer>
-  }
+  );
   return HocComponent;
 };
