@@ -1,0 +1,36 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-standard",
+    "tslint-sonarts",
+    "tslint-immutable"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "**/_assets/*.json"
+    ]
+  },
+  "rules": {
+    "no-implicit-dependencies": [true, ["~"]], // allow the '~' module import alias
+    "no-submodule-imports": false,
+    "semicolon": true,
+    "object-literal-sort-keys": false,
+    "jsx-no-multiline-js": false,
+    "prefer-immediate-return": false,
+    "no-duplicate-string": false,
+    "space-before-function-paren": false,
+
+    "no-var-keyword": true,
+    "no-parameter-reassignment": true,
+
+    // Immutability rules
+    "readonly-keyword": true,
+    "readonly-array": true,
+    "no-let": true,
+    "no-object-mutation": true,
+    "no-delete": true,
+    "no-method-signature": true
+  }
+}
