@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { getMessages } from '../../../handlers/message-handlers';
 import { Message } from '../../../model/domain/message';
 import { NewMessage } from '../../molecules/new-message/NewMessage';
 import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
@@ -7,32 +6,27 @@ import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
 interface SendMessageType {
   message: string;
   author: string;
+  room: string;
 }
 type ReceiveMessageType = string;
 
-const useMessages = (): [Message[], (m: Message) => void] => {
-  const [messages, setMessages] = React.useState<Message[]>([]);
-  React.useEffect(() => {
-    getMessages().then((mm) => setMessages(mm));
-  }, []);
-
-  const addMessage = (message: Message) => {
-    setMessages((prev) => [...prev, message]);
-  }
-  return [messages, addMessage];
+interface MessageProps {
+  room: string;
+  author: string;
+  messages: Message[];
+  onAddNewMessage: (m: string) => void;
 }
+type AllProps = MessageProps & WebsocketProps<SendMessageType, ReceiveMessageType>;
 
-const Messages = (props: WebsocketProps<SendMessageType, ReceiveMessageType>) => {
-  const [messages, addMessage] = useMessages();
-  const onAddNewMessage = (message) => props.send({ message, author: 'Me' })
+const Messages = (props: AllProps) => {
   return (
     <div>
       <h2>Messages</h2>
       <ul>
-        {messages.map((m: Message) => <li key={m.messageId}>{JSON.stringify(m)}</li>)}
+        {props.messages.map((m: Message) => <li key={m.messageId}>{JSON.stringify(m)}</li>)}
       </ul>
-      <NewMessage onAddNewMessage={onAddNewMessage} />
+      <NewMessage onAddNewMessage={props.onAddNewMessage} />
     </div>
   )
 }
-export default withWebSocket<{}, SendMessageType, ReceiveMessageType>(Messages);
+export default withWebSocket<MessageProps, SendMessageType, ReceiveMessageType>(Messages);

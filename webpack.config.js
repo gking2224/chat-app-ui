@@ -13,7 +13,6 @@ const webpackConfig = isProd => ({
   devtool: 'inline-source-map',
   entry: path.resolve(root, 'src/app/index.tsx'),
   resolve: {
-    // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
@@ -37,10 +36,6 @@ const webpackConfig = isProd => ({
       template: path.resolve(dirs.src, 'html/index.html'),
     }),
     new DotenvPlugin(),
-    // new webpack.DefinePlugin({
-    //   'process.env.GET_MESSAGES_URL': JSON.stringify(process.env.GET_MESSAGES_URL),
-    //   'process.env.WS_ENDPOINT': JSON.stringify(process.env.WS_ENDPOINT),
-    // }),
   ],
 });
 

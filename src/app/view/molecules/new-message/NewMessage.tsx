@@ -12,7 +12,10 @@ export const NewMessage = (props: NewMessageProps) => {
   };
   return (
     <div>
-      <input value={value} onChange={onChange} />
+      <h3>Post Message</h3>
+      <div>
+        <input value={value} onChange={onChange} />
+      </div>
       <button type="button" onClick={submitNewMessage}>Submit</button>
     </div>
   );

@@ -1,5 +1,7 @@
 
 export interface Message {
-  messageId: string;
+  messageId?: string;
   message: string;
+  author: string;
+  room: string;
 }
