@@ -4,12 +4,13 @@ import { ConnectionStatus } from '../model/domain/websocket';
 const WS_ENDPOINT = process.env.WEBSOCKET_ENDPOINT;
 const wsUrl = (room: string, author: string) => `${WS_ENDPOINT}/?room=${room}&room=${author}`;
 
-export default <T>(
+export default <S, R>(
   room: string,
   author: string,
-  onMessageReceived: (message: T) => void,
+  onMessageReceived: (message: R) => void,
   onDisconnect: () => void,
-): [WebSocket | null, ConnectionStatus, () => void, (message: T) => void] => {
+  onConnect: () => void,
+): [WebSocket | null, ConnectionStatus, () => void, (message: S) => void] => {
   const wsConnectionRef = React.useRef<WebSocket>(null);
   const [connectionStatus, setConnectionStatus] = React.useState<ConnectionStatus>('init');
 
@@ -20,23 +21,24 @@ export default <T>(
     }
     onDisconnect();
   }
-  const onConnect = (c: any) => {
+  const onOpen = (c: any) => {
     setConnectionStatus('connected');
     console.log('connected:', c);
+    if (onConnect) onConnect();
   }
   const onError = (e: any) => {
     console.log('error:', e);
   }
-  const onMessage = (m: any) => {
+  const onMessage = (m: unknown) => {
     console.log('message received:', m);
-    onMessageReceived(JSON.parse(m.data) as T);
+    if (m) onMessageReceived(JSON.parse((m as any).data) as R);
   }
   const onClose = (d: any) => {
     console.log('disconnected:', d);
     disconnect();
   }
 
-  const sendMessage = (m: T) => {
+  const sendMessage = (m: S) => {
     if (wsConnectionRef.current !== null) {
       wsConnectionRef.current.send(JSON.stringify(m));
     }
@@ -47,7 +49,7 @@ export default <T>(
       console.log('connecting');
       const ws = new WebSocket(wsUrl(room, author));
 
-      ws.onopen = onConnect;
+      ws.onopen = onOpen;
       ws.onerror = onError;
       ws.onmessage = onMessage;
       ws.onclose = onClose;
