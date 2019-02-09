@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Message } from '../../../model/domain/message';
+import { NewChatMessage, SavedChatMessage } from '../../../model/domain/message';
 import { NewMessage } from '../../molecules/new-message/NewMessage';
 import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
+import Message from '../../molecules/message/Message';
 
 interface SendMessageType {
   message: string;
@@ -13,7 +14,7 @@ type ReceiveMessageType = string;
 interface MessageProps {
   room: string;
   author: string;
-  messages: Message[];
+  messages: SavedChatMessage[];
   onAddNewMessage: (m: string) => void;
 }
 type AllProps = MessageProps & WebsocketProps<SendMessageType, ReceiveMessageType>;
@@ -22,9 +23,9 @@ const Messages = (props: AllProps) => {
   return (
     <div>
       <h2>Messages</h2>
-      <ul>
-        {props.messages.map((m: Message) => <li key={m.messageId}>{JSON.stringify(m)}</li>)}
-      </ul>
+      <div>
+        {props.messages.map((m: SavedChatMessage) => <Message key={m.messageId} message={m} />)}
+      </div>
       <NewMessage onAddNewMessage={props.onAddNewMessage} />
     </div>
   )

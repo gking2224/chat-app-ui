@@ -7,7 +7,7 @@ interface LobbyProps {
 export const Lobby = (props: LobbyProps) => {
 
   const [room, setRoom] = useInputBoundState('');
-  const [author, setAuthor] = useInputBoundState('');
+  const [author, setAuthor] = useInputBoundState('')
 
   const joinRoom = () => props.onJoinRoom(room, author);
   return (
@@ -16,13 +16,13 @@ export const Lobby = (props: LobbyProps) => {
       <div>
         <label>
           Room
-        <input onChange={setRoom} value={room} />
+          <input onChange={setRoom} value={room} />
         </label>
       </div>
       <div>
         <label>
           Username
-        <input onChange={setAuthor} value={author} />
+          <input onChange={setAuthor} value={author} />
         </label>
       </div>
       <button onClick={joinRoom} type={'button'}>Join Room</button>

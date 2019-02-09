@@ -1,5 +1,5 @@
-import { Message } from "../domain/message";
+import { NewChatMessage } from "../domain/message";
 
 export interface GetMessagesResponse {
-  readonly messages: Message[];
+  readonly messages: NewChatMessage[];
 }

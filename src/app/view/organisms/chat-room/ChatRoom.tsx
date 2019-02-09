@@ -2,36 +2,8 @@ import * as React from 'react';
 import Messages from '../messages/Messages';
 import { WebsocketContext } from '../../../hoc/withWebSocket';
 import useWebsocket from '../../../hooks/use-websocket';
-import { Message } from '../../../model/domain/message';
-
-
-type InitMessage = {
-  action: 'init';
-  room: string;
-}
-type InitRoomMessages = {
-  action: 'init';
-  messages: Message[];
-}
-type NewMessage = {
-  action: 'message';
-  message: Message;
-}
-type SendMessage = InitMessage | NewMessage;
-type ReceiveMessage = NewMessage | InitRoomMessages;
-
-const useMessages = (room: string): [Message[], (m: ReceiveMessage) => void] => {
-  const [messages, setMessages] = React.useState<Message[]>([]);
-
-  const addMessage = (payload: ReceiveMessage) => {
-    if (payload.action === 'init') {
-      setMessages(payload.messages);
-    } else {
-      setMessages((prev) => [...prev, payload.message]);
-    }
-  }
-  return [messages, addMessage];
-}
+import { ReceiveMessage as ReceiveMessageType, SendMessage as SendMessageType } from '../../../model/domain/message';
+import useMessages from '../../../hooks/use-messages';
 
 interface ChatRoomProps {
   readonly room: string;
@@ -41,16 +13,13 @@ interface ChatRoomProps {
 
 export const ChatRoom = (props: ChatRoomProps) => {
 
-  const [messages, addMessage] = useMessages(props.room);
-  const onMessageReceived = (m: ReceiveMessage) => {
-    addMessage(m);
-  }
-  const onConnect = () => {
-    sendMessage({ action: 'init', room: props.room });
-  }
+  const [messages, addMessage] = useMessages();
 
-  const [connection, connectionStatus, disconnect, sendMessage] =
-    useWebsocket<SendMessage, ReceiveMessage>(props.room, props.author, onMessageReceived, props.onLeave, onConnect);
+  const onMessageReceived = (m: ReceiveMessageType) => addMessage(m);
+  const onConnect = () => sendMessage({ action: 'init', room: props.room });
+
+  const [connection, connectionStatus, disconnect, sendMessage] = useWebsocket<SendMessageType, ReceiveMessageType>(
+    props.room, props.author, onMessageReceived, props.onLeave, onConnect);
 
   const onAddNewMessage = (message: string) => {
     sendMessage({ action: 'message', message: { message, author: props.author, room: props.room } });
