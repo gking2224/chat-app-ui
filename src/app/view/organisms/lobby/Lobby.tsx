@@ -1,13 +1,23 @@
 import * as React from 'react';
 import useInputBoundState from '../../../hooks/use-input-value';
+import { getRooms } from '../../../handlers/message-handlers';
 
 interface LobbyProps {
   readonly onJoinRoom: (room: string, author: string) => void;
 }
 export const Lobby = (props: LobbyProps) => {
 
-  const [room, setRoom] = useInputBoundState('');
+  const [room, setRoom] = React.useState<string>('');
+  const [rooms, setRooms] = React.useState<string[] | null>(null);
   const [author, setAuthor] = useInputBoundState('')
+
+  React.useEffect(() => {
+    getRooms().then(setRooms);
+  }, []);
+
+  const roomChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRoom(e.target.value);
+  }
 
   const joinRoom = () => props.onJoinRoom(room, author);
   return (
@@ -16,7 +26,15 @@ export const Lobby = (props: LobbyProps) => {
       <div>
         <label>
           Room
-          <input onChange={setRoom} value={room} />
+          {!rooms && <span>Loading Rooms...</span>}
+          {!!rooms && (
+            <select onChange={roomChange} value={room}>
+              <option value={''}>Please select...</option>
+              {rooms.map((r) => (
+                <option key={r} value={r}>{r}</option>
+              ))}
+            </select>
+          )}
         </label>
       </div>
       <div>

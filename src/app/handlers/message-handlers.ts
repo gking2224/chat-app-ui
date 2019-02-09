@@ -1,10 +1,12 @@
-import { NewChatMessage } from "../model/domain/message";
-import { GetMessagesResponse } from "../model/api/messages";
 
-const url = (room: string) => `${process.env.GET_MESSAGES_URL}/?room=${room}`
+const url = () => process.env.GET_ROOMS_URL;
 
-export const getMessages = async (room: string): Promise<NewChatMessage[]> => {
-  return fetch(url(room))
-    .then((response) => (response.json() as any) as GetMessagesResponse)
-    .then(m => m.messages);
+type GetRoomsResponse = {
+  rooms: string[];
+}
+
+export const getRooms = async (): Promise<string[]> => {
+  return fetch(url())
+    .then((response) => (response.json() as any) as GetRoomsResponse)
+    .then((response) => response.rooms);
 }
