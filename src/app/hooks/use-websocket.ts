@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ConnectionStatus } from '../model/domain/websocket';
 
 const WS_ENDPOINT = process.env.WEBSOCKET_ENDPOINT;
-const wsUrl = (room: string, author: string) => `${WS_ENDPOINT}/?room=${room}&room=${author}`;
+const wsUrl = (room: string, author: string) => `${WS_ENDPOINT}/?room=${room}&author=${author}`;
 
 export default <S, R>(
   room: string,
@@ -13,7 +13,6 @@ export default <S, R>(
 ): [WebSocket | null, ConnectionStatus, () => void, (message: S) => void] => {
   const wsConnectionRef = React.useRef<WebSocket>(null);
   const [connectionStatus, setConnectionStatus] = React.useState<ConnectionStatus>('init');
-
 
   const disconnect = () => {
     if (wsConnectionRef.current !== null) {
