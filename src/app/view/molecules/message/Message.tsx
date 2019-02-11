@@ -11,10 +11,10 @@ const Message = (props: MessageProps) => {
   return (
     <div className={'message'}>
       <div>
-        <span className={'message__author'}>{message.author}:</span>
+        <span className={'message__author'}>{message.author}</span>
         <span className={'message__message'}>{message.message} [{message.language}]</span>
       </div>
-      {message.translation && <p>({message.translation})</p>}
+      {message.translation && <p className={'message__translation'}>({message.translation})</p>}
     </div>
   )
 }

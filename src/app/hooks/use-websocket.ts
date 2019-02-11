@@ -11,7 +11,7 @@ export default <S, R>(
   onDisconnect: () => void,
   onConnect: () => void,
 ): [WebSocket | null, ConnectionStatus, () => void, (message: S) => void] => {
-  const wsConnectionRef = React.useRef<WebSocket>(null);
+  const wsConnectionRef = React.useRef<WebSocket>(null) as React.MutableRefObject<WebSocket>;
   const [connectionStatus, setConnectionStatus] = React.useState<ConnectionStatus>('init');
 
   const disconnect = () => {
@@ -52,10 +52,10 @@ export default <S, R>(
       ws.onerror = onError;
       ws.onmessage = onMessage;
       ws.onclose = onClose;
-      wsConnectionRef.current = ws;
+      wsConnectionRef.current = ws; // tslint:disable-line
     }
     return () => {
-      if (wsConnectionRef.current! == null) {
+      if (wsConnectionRef.current !== null) {
         console.log('disconnecting');
         setConnectionStatus('disconnecting');
         wsConnectionRef.current.close(1000);

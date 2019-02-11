@@ -11,6 +11,7 @@ export default <P, S, R>(Component: React.ComponentType<P & WebsocketProps<S, R>
   const HocComponent = (props: P) => (
     <WebsocketContext.Consumer>
       {(connection) => {
+        if (!connection) return null;
         const onSend = (message: S) => connection.send(JSON.stringify(message));
         return <Component {...props} connection={connection} send={onSend} />;
       }}

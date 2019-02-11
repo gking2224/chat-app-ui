@@ -1,6 +1,7 @@
+const defaultUrl = '<unknown';
 
-const getRoomsUrl = () => process.env.GET_ROOMS_URL;
-const createRoomUrl = () => process.env.CREATE_ROOM_URL;
+const getRoomsUrl = () => process.env.GET_ROOMS_URL || defaultUrl;
+const createRoomUrl = () => process.env.CREATE_ROOM_URL || defaultUrl;
 
 type GetRoomsResponse = {
   rooms: string[];

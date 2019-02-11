@@ -1,3 +1,12 @@
 .message {
-  border: 1px solid black;
+  background: rgb(83, 212, 255);
+  border-radius: 1rem;
+  margin: 2rem;
+  padding: 0.5rem;
+}
+.message__author::after {
+  content: ': ';
+}
+.message__translation {
+  font-style: italic;
 }

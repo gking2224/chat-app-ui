@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChatApp } from './view/organisms/chat-app/ChatApp';
+import { ChatApp } from './view/pages/chat-app/ChatApp';
 
 const App = () => {
 
