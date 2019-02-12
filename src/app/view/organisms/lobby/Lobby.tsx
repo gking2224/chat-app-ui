@@ -27,7 +27,9 @@ export const Lobby = (props: LobbyProps) => {
   const roomExists = (room: string) => (allRooms !== null && allRooms.indexOf(room) !== -1)
   const canCreateRoom = (room: string) => room !== '' && !roomExists(room);
 
+  const canJoin = author !== '' && selectedRoom !== '';
   const joinRoom = () => props.onJoinRoom(selectedRoom, author);
+
   return (
     <div>
       <h2>Lobby</h2>
@@ -41,7 +43,7 @@ export const Lobby = (props: LobbyProps) => {
           <input onChange={setAuthor} value={author} />
         </label>
       </div>
-      <button onClick={joinRoom} type={'button'}>Join Room</button>
+      <button onClick={joinRoom} disabled={!canJoin} type={'button'}>Join Room</button>
     </div>
   );
 };
