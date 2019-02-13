@@ -14,6 +14,9 @@ const webpackConfig = isProd => ({
   entry: path.resolve(root, 'src/app/index.tsx'),
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      'chat-types': path.resolve(root, 'externals/chat-types')
+    }
   },
   output: {
     path: path.resolve(__dirname, 'dist'), // string
