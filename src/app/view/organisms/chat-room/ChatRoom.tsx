@@ -3,7 +3,7 @@ import Messages from '../messages/Messages';
 import { WebsocketContext } from '../../../hoc/withWebSocket';
 import useWebsocket from '../../../hooks/use-websocket';
 import useMessages from '../../../hooks/use-messages';
-import { ReceiveMessage, SendMessage } from 'chat-types';
+import { WebsocketMessageRequest, WebsocketMessageResponse } from 'chat-types';
 
 interface ChatRoomProps {
   readonly room: string;
@@ -15,11 +15,12 @@ export const ChatRoom = (props: ChatRoomProps) => {
 
   const [messages, addMessage] = useMessages();
 
-  const onMessageReceived = (m: ReceiveMessage) => addMessage(m);
-  const onConnect = () => sendMessage({ action: 'init', room: props.room });
+  const onMessageReceived = (m: WebsocketMessageResponse) => addMessage(m);
+  const onConnect = () => sendMessage({ action: 'init', roomName: props.room });
 
-  const [connection, connectionStatus, disconnect, sendMessage] = useWebsocket<SendMessage, ReceiveMessage>(
-    props.room, props.author, onMessageReceived, props.onLeave, onConnect);
+  const [connection, connectionStatus, disconnect, sendMessage] =
+    useWebsocket<WebsocketMessageRequest, WebsocketMessageResponse>(
+      props.room, props.author, onMessageReceived, props.onLeave, onConnect);
 
   const onAddNewMessage = (message: string) => {
     sendMessage({ action: 'message', message: { message, author: props.author, room: props.room } });

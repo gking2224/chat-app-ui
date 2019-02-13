@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NewMessage } from '../../molecules/new-message/NewMessage';
 import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
 import Message from '../../molecules/message/Message';
-import { SavedChatMessage } from 'chat-types';
+import { ChatRoomMessageEntity } from 'chat-types';
 
 interface SendMessageType {
   message: string;
@@ -14,7 +14,7 @@ type ReceiveMessageType = string;
 interface MessageProps {
   room: string;
   author: string;
-  messages: SavedChatMessage[];
+  messages: ChatRoomMessageEntity[];
   onAddNewMessage: (m: string) => void;
 }
 type AllProps = MessageProps & WebsocketProps<SendMessageType, ReceiveMessageType>;
@@ -24,7 +24,7 @@ const Messages = (props: AllProps) => {
     <div>
       <h2>Messages</h2>
       <div>
-        {props.messages.map((m: SavedChatMessage) => <Message key={m.messageId} message={m} />)}
+        {props.messages.map((m: ChatRoomMessageEntity) => <Message key={m.messageId} message={m} />)}
       </div>
       <NewMessage onAddNewMessage={props.onAddNewMessage} />
     </div>

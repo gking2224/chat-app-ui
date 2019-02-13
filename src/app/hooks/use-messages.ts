@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { SavedChatMessage, ReceiveMessage } from 'chat-types';
+import { ChatRoomMessageEntity, WebsocketMessageResponse } from 'chat-types';
 
-export default (): [SavedChatMessage[], (m: ReceiveMessage) => void] => {
-  const [messages, setMessages] = React.useState<SavedChatMessage[]>([]);
+export default (): [ChatRoomMessageEntity[], (m: WebsocketMessageResponse) => void] => {
+  const [messages, setMessages] = React.useState<ChatRoomMessageEntity[]>([]);
 
-  const addMessage = (payload: ReceiveMessage) => {
+  const addMessage = (payload: WebsocketMessageResponse) => {
     if (payload.action === 'init') {
       setMessages(payload.messages);
     } else {

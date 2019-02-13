@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './message.css';
-import { NewChatMessage } from 'chat-types';
+import { ChatRoomMessageEntity } from 'chat-types';
 
 interface MessageProps {
-  message: NewChatMessage;
+  message: ChatRoomMessageEntity;
 }
 
 const Message = (props: MessageProps) => {
