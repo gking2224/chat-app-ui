@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './message.css';
-import { NewChatMessage } from '../../../model/domain/message';
+import { NewChatMessage } from 'chat-types';
 
 interface MessageProps {
   message: NewChatMessage;

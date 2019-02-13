@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ConnectionStatus } from '../model/domain/websocket';
+
+export type ConnectionStatus = 'init' | 'connected' | 'disconnecting';
 
 const WS_ENDPOINT = process.env.WEBSOCKET_ENDPOINT;
 const wsUrl = (room: string, author: string) => `${WS_ENDPOINT}/?room=${room}&author=${author}`;

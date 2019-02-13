@@ -1,5 +1,5 @@
-import { ReceiveMessage, SavedChatMessage } from "../model/domain/message";
 import * as React from 'react';
+import { SavedChatMessage, ReceiveMessage } from 'chat-types';
 
 export default (): [SavedChatMessage[], (m: ReceiveMessage) => void] => {
   const [messages, setMessages] = React.useState<SavedChatMessage[]>([]);

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { NewChatMessage, SavedChatMessage } from '../../../model/domain/message';
 import { NewMessage } from '../../molecules/new-message/NewMessage';
 import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
 import Message from '../../molecules/message/Message';
+import { SavedChatMessage } from 'chat-types';
 
 interface SendMessageType {
   message: string;

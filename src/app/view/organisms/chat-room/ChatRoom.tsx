@@ -2,8 +2,8 @@ import * as React from 'react';
 import Messages from '../messages/Messages';
 import { WebsocketContext } from '../../../hoc/withWebSocket';
 import useWebsocket from '../../../hooks/use-websocket';
-import { ReceiveMessage as ReceiveMessageType, SendMessage as SendMessageType } from '../../../model/domain/message';
 import useMessages from '../../../hooks/use-messages';
+import { ReceiveMessage, SendMessage } from 'chat-types';
 
 interface ChatRoomProps {
   readonly room: string;
@@ -15,10 +15,10 @@ export const ChatRoom = (props: ChatRoomProps) => {
 
   const [messages, addMessage] = useMessages();
 
-  const onMessageReceived = (m: ReceiveMessageType) => addMessage(m);
+  const onMessageReceived = (m: ReceiveMessage) => addMessage(m);
   const onConnect = () => sendMessage({ action: 'init', room: props.room });
 
-  const [connection, connectionStatus, disconnect, sendMessage] = useWebsocket<SendMessageType, ReceiveMessageType>(
+  const [connection, connectionStatus, disconnect, sendMessage] = useWebsocket<SendMessage, ReceiveMessage>(
     props.room, props.author, onMessageReceived, props.onLeave, onConnect);
 
   const onAddNewMessage = (message: string) => {
