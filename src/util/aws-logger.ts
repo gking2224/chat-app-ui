@@ -18,7 +18,7 @@ export const awsLogger: () => Logger = () => {
   ws.onclose = onClose; // tslint:disable-line:no-object-mutation
 
   const createSeverityLogger = (severity: string) => async (message: string) => {
-    const msg = { action: 'message', severity, message, logStream: 'chat-app-ui' };
+    const msg = { severity, message, logStream: 'chat-app-ui' };
     ws.send(JSON.stringify(msg));
   };
   const debug = createSeverityLogger('debug');
