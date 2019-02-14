@@ -1,16 +1,15 @@
 import * as React from 'react';
 
 interface SelectRoomProps {
-  readonly rooms: string[] | null;
+  readonly rooms: ReadonlyArray<string> | null;
   readonly onChange: (room: string) => void;
   readonly selectedRoom: string;
 }
 export default (props: SelectRoomProps) => {
 
-
   const roomChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     props.onChange(e.target.value);
-  }
+  };
   return (
 
     <label>
@@ -26,4 +25,4 @@ export default (props: SelectRoomProps) => {
       )}
     </label>
   );
-}
+};

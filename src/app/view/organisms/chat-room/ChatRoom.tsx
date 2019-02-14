@@ -1,9 +1,9 @@
+import { validateWebsocketMessageResponse, WebsocketMessageRequest, WebsocketMessageResponse } from 'chat-types'; // tslint:disable-line:no-implicit-dependencies max-line-length
 import * as React from 'react';
-import Messages from '../messages/Messages';
 import { WebsocketContext } from '../../../hoc/withWebSocket';
-import useWebsocket from '../../../hooks/use-websocket';
 import useMessages from '../../../hooks/use-messages';
-import { WebsocketMessageRequest, WebsocketMessageResponse } from 'chat-types';
+import useWebsocket from '../../../hooks/use-websocket';
+import Messages from '../messages/Messages';
 
 interface ChatRoomProps {
   readonly room: string;
@@ -20,11 +20,11 @@ export const ChatRoom = (props: ChatRoomProps) => {
 
   const [connection, connectionStatus, disconnect, sendMessage] =
     useWebsocket<WebsocketMessageRequest, WebsocketMessageResponse>(
-      props.room, props.author, onMessageReceived, props.onLeave, onConnect);
+      props.room, props.author, onMessageReceived, props.onLeave, onConnect, validateWebsocketMessageResponse);
 
   const onAddNewMessage = (message: string) => {
     sendMessage({ action: 'message', message: { message, author: props.author, room: props.room } });
-  }
+  };
   return (
     <WebsocketContext.Provider value={connection}>
       <p>Connection Status: {connectionStatus}</p>
@@ -32,4 +32,4 @@ export const ChatRoom = (props: ChatRoomProps) => {
       <button type={'button'} onClick={disconnect}>Leave room</button>
     </WebsocketContext.Provider>
   );
-}
+};

@@ -1,20 +1,20 @@
 import * as React from 'react';
+import { createRoom, getRooms } from '../../../handlers/message-handlers';
 import useInputBoundState from '../../../hooks/use-input-value';
-import { getRooms, createRoom } from '../../../handlers/message-handlers';
-import SelectRoom from '../../molecules/select-room/SelectRoom';
 import CreateNewRoom from '../../molecules/create-new-room/CreateNewRoom';
+import SelectRoom from '../../molecules/select-room/SelectRoom';
 
 interface LobbyProps {
   readonly onJoinRoom: (room: string, author: string) => void;
 }
 export const Lobby = (props: LobbyProps) => {
   const [selectedRoom, setRoom] = React.useState<string>('');
-  const [allRooms, setRooms] = React.useState<string[] | null>(null);
-  const [author, setAuthor] = useInputBoundState('')
+  const [allRooms, setRooms] = React.useState<ReadonlyArray<string> | null>(null);
+  const [author, setAuthor] = useInputBoundState('');
 
   const initRooms = () => {
     getRooms().then(setRooms);
-  }
+  };
   React.useEffect(initRooms, []);
 
   const onCreateNewRoom = async (newRoomName: string) => {
@@ -22,9 +22,9 @@ export const Lobby = (props: LobbyProps) => {
       initRooms();
       setRoom(newRoomName);
     });
-  }
+  };
 
-  const roomExists = (room: string) => (allRooms !== null && allRooms.indexOf(room) !== -1)
+  const roomExists = (room: string) => (allRooms !== null && allRooms.indexOf(room) !== -1);
   const canCreateRoom = (room: string) => room !== '' && !roomExists(room);
 
   const canJoin = author !== '' && selectedRoom !== '';

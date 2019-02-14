@@ -1,9 +1,9 @@
+import { ChatRoomMessageEntity } from 'chat-types'; // tslint:disable-line:no-implicit-dependencies
 import * as React from 'react';
 import './message.css';
-import { ChatRoomMessageEntity } from 'chat-types';
 
 interface MessageProps {
-  message: ChatRoomMessageEntity;
+  readonly message: ChatRoomMessageEntity;
 }
 
 const Message = (props: MessageProps) => {
@@ -16,6 +16,6 @@ const Message = (props: MessageProps) => {
       </div>
       {message.translation && <p className={'message__translation'}>({message.translation})</p>}
     </div>
-  )
-}
+  );
+};
 export default Message;

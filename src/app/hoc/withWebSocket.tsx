@@ -3,8 +3,8 @@ import * as React from 'react';
 export const WebsocketContext = React.createContext<WebSocket | null>(null);
 
 export interface WebsocketProps<S, R> {
-  connection: WebSocket;
-  send: (data: S) => void;
+  readonly connection: WebSocket;
+  readonly send: (data: S) => void;
 }
 
 export default <P, S, R>(Component: React.ComponentType<P & WebsocketProps<S, R>>): React.ComponentType<P> => {

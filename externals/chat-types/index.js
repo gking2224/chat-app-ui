@@ -44,6 +44,7 @@ var _InitRoomResponse = runtypes_1.Record({
     messages: runtypes_1.Array(_ChatRoomMessageEntity)
 });
 var _WebsocketMessageResponse = runtypes_1.Union(_InitRoomResponse, _NotifyNewMessage);
+exports.validateWebsocketMessageResponse = function (x) { return _WebsocketMessageResponse.check(x); };
 // -- END WebsocketMessageResponse -- //
 // -- WebsocketMessageRequest -- //
 var _IncomingNewMessage = _BaseChatRoomMessage;

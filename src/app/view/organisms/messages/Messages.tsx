@@ -1,21 +1,21 @@
+import { ChatRoomMessageEntity } from 'chat-types'; // tslint:disable-line:no-implicit-dependencies
 import * as React from 'react';
-import { NewMessage } from '../../molecules/new-message/NewMessage';
 import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
 import Message from '../../molecules/message/Message';
-import { ChatRoomMessageEntity } from 'chat-types';
+import { NewMessage } from '../../molecules/new-message/NewMessage';
 
 interface SendMessageType {
-  message: string;
-  author: string;
-  room: string;
+  readonly message: string;
+  readonly author: string;
+  readonly room: string;
 }
 type ReceiveMessageType = string;
 
 interface MessageProps {
-  room: string;
-  author: string;
-  messages: ChatRoomMessageEntity[];
-  onAddNewMessage: (m: string) => void;
+  readonly room: string;
+  readonly author: string;
+  readonly messages: ReadonlyArray<ChatRoomMessageEntity>;
+  readonly onAddNewMessage: (m: string) => void;
 }
 type AllProps = MessageProps & WebsocketProps<SendMessageType, ReceiveMessageType>;
 
@@ -28,6 +28,6 @@ const Messages = (props: AllProps) => {
       </div>
       <NewMessage onAddNewMessage={props.onAddNewMessage} />
     </div>
-  )
-}
+  );
+};
 export default withWebSocket<MessageProps, SendMessageType, ReceiveMessageType>(Messages);

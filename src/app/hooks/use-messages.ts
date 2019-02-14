@@ -1,8 +1,8 @@
+import { ChatRoomMessageEntity, WebsocketMessageResponse } from 'chat-types'; // tslint:disable-line:no-implicit-dependencies max-line-length
 import * as React from 'react';
-import { ChatRoomMessageEntity, WebsocketMessageResponse } from 'chat-types';
 
-export default (): [ChatRoomMessageEntity[], (m: WebsocketMessageResponse) => void] => {
-  const [messages, setMessages] = React.useState<ChatRoomMessageEntity[]>([]);
+export default (): [ReadonlyArray<ChatRoomMessageEntity>, (m: WebsocketMessageResponse) => void] => {
+  const [messages, setMessages] = React.useState<ReadonlyArray<ChatRoomMessageEntity>>([]);
 
   const addMessage = (payload: WebsocketMessageResponse) => {
     if (payload.action === 'init') {
@@ -10,6 +10,6 @@ export default (): [ChatRoomMessageEntity[], (m: WebsocketMessageResponse) => vo
     } else {
       setMessages((prev) => [...prev, payload.message]);
     }
-  }
+  };
   return [messages, addMessage];
-}
+};

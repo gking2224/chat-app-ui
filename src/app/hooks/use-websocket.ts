@@ -11,6 +11,7 @@ export default <S, R>(
   onMessageReceived: (message: R) => void,
   onDisconnect: () => void,
   onConnect: () => void,
+  validateResponse: (x: any) => R
 ): [WebSocket | null, ConnectionStatus, () => void, (message: S) => void] => {
   const wsConnectionRef = React.useRef<WebSocket>(null) as React.MutableRefObject<WebSocket>;
   const [connectionStatus, setConnectionStatus] = React.useState<ConnectionStatus>('init');
@@ -20,39 +21,39 @@ export default <S, R>(
       wsConnectionRef.current.close();
     }
     onDisconnect();
-  }
+  };
   const onOpen = (c: any) => {
     setConnectionStatus('connected');
     console.log('connected:', c);
     if (onConnect) onConnect();
-  }
+  };
   const onError = (e: any) => {
     console.log('error:', e);
-  }
-  const onMessage = (m: unknown) => {
+  };
+  const onMessage = (m: any) => {
     console.log('message received:', m);
-    if (m) onMessageReceived(JSON.parse((m as any).data) as R);
-  }
+    if (m) onMessageReceived(validateResponse(JSON.parse(m).data));
+  };
   const onClose = (d: any) => {
     console.log('disconnected:', d);
     disconnect();
-  }
+  };
 
   const sendMessage = (m: S) => {
     if (wsConnectionRef.current !== null) {
       wsConnectionRef.current.send(JSON.stringify(m));
     }
-  }
+  };
 
   React.useEffect(() => {
     if (wsConnectionRef.current === null) {
       console.log('connecting');
       const ws = new WebSocket(wsUrl(room, author));
 
-      ws.onopen = onOpen;
-      ws.onerror = onError;
-      ws.onmessage = onMessage;
-      ws.onclose = onClose;
+      ws.onopen = onOpen; // tslint:disable-line:no-object-mutation
+      ws.onerror = onError; // tslint:disable-line:no-object-mutation
+      ws.onmessage = onMessage; // tslint:disable-line:no-object-mutation
+      ws.onclose = onClose; // tslint:disable-line:no-object-mutation
       wsConnectionRef.current = ws; // tslint:disable-line
     }
     return () => {
@@ -63,7 +64,7 @@ export default <S, R>(
       } else {
         console.log('unmounting - no need to disconnect');
       }
-    }
+    };
   }, []);
   return [wsConnectionRef.current, connectionStatus, disconnect, sendMessage];
-}
+};

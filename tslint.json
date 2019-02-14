@@ -31,6 +31,8 @@
     "no-let": true,
     "no-object-mutation": true,
     "no-delete": true,
-    "no-method-signature": true
+    "no-method-signature": true,
+    "interface-name": false,
+    "no-console": false
   }
 }

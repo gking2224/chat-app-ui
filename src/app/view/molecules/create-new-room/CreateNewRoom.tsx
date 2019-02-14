@@ -11,7 +11,7 @@ export default (props: CreateNewRoomProps) => {
   const onSubmit = () => {
     props.onCreateNewRoom(newRoomName)
       .then(() => setNewRoomName(''));
-  }
+  };
   return (
     <>
       <label>
@@ -21,4 +21,4 @@ export default (props: CreateNewRoomProps) => {
       <button type={'button'} disabled={!props.canCreateRoom(newRoomName)} onClick={onSubmit}>Create</button>
     </>
   );
-}
+};

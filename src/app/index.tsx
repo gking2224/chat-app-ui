@@ -9,6 +9,6 @@ const Root = () => {
     <div>
       <App />
     </div>
-  )
-}
+  );
+};
 doRender(Root);

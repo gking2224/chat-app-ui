@@ -95,6 +95,29 @@ declare const _WebsocketMessageResponse: import("runtypes").Union2<Record<{
     }>>;
 }>>;
 export declare type WebsocketMessageResponse = Static<typeof _WebsocketMessageResponse>;
+export declare const validateWebsocketMessageResponse: (x: any) => {
+    action: "message";
+    message: {
+        message: string;
+        room: string;
+        author: string;
+    } & {
+        messageId: string;
+        translation: string;
+        language: string;
+    };
+} | {
+    action: "init";
+    messages: ({
+        message: string;
+        room: string;
+        author: string;
+    } & {
+        messageId: string;
+        translation: string;
+        language: string;
+    })[];
+};
 declare const _IncomingNewMessage: Record<{
     message: String;
     room: String;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface NewMessageProps {
-  onAddNewMessage: (message: string) => void;
+  readonly onAddNewMessage: (message: string) => void;
 }
 export const NewMessage = (props: NewMessageProps) => {
   const [value, setValue] = React.useState<string>('');
@@ -16,7 +16,7 @@ export const NewMessage = (props: NewMessageProps) => {
       <div>
         <input value={value} onChange={onChange} />
       </div>
-      <button type="button" onClick={submitNewMessage}>Submit</button>
+      <button type='button' onClick={submitNewMessage}>Submit</button>
     </div>
   );
 };
