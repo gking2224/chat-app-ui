@@ -11,7 +11,7 @@ export default <S, R>(
   onMessageReceived: (message: R) => void,
   onDisconnect: () => void,
   onConnect: () => void,
-  validateResponse: (x: any) => R
+  validateResponse: (x: any) => R,
 ): [WebSocket | null, ConnectionStatus, () => void, (message: S) => void] => {
   const wsConnectionRef = React.useRef<WebSocket>(null) as React.MutableRefObject<WebSocket>;
   const [connectionStatus, setConnectionStatus] = React.useState<ConnectionStatus>('init');

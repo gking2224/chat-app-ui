@@ -5,7 +5,7 @@ const DotenvPlugin = require('webpack-dotenv-plugin');
 const root = path.resolve(__dirname, '.');
 const dirs = {
   src: path.resolve(root, 'src'),
-  dist: path.resolve(root, 'dist'),
+  dist: path.resolve(root, 'dist')
 };
 
 const webpackConfig = isProd => ({

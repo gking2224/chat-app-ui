@@ -2,6 +2,7 @@ import { CreateRoomBody, CreateRoomResponse, validateCreateRoomResponse, validat
 
 const defaultUrl = '<unknown>';
 
+const x: ReadonlyArray<string> = ['a', 'b'];
 const getRoomsUrl = () => process.env.GET_ROOMS_URL || defaultUrl;
 const createRoomUrl = () => process.env.CREATE_ROOM_URL || defaultUrl;
 
@@ -13,14 +14,14 @@ export const getRooms = async (): Promise<ReadonlyArray<string>> => {
 };
 export const createRoom = async (room: string): Promise<CreateRoomResponse> => {
   const req: CreateRoomBody = {
-    roomName: room
+    roomName: room,
   };
   const options: RequestInit = {
     body: JSON.stringify(req),
-    method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
   };
   return fetch(createRoomUrl(), options)
     .then((response) => response.json())
