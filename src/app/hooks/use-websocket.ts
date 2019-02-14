@@ -32,7 +32,7 @@ export default <S, R>(
   };
   const onMessage = (m: any) => {
     console.log('message received:', m);
-    if (m) onMessageReceived(validateResponse(JSON.parse(m).data));
+    if (m) onMessageReceived(validateResponse(JSON.parse(m.data)));
   };
   const onClose = (d: any) => {
     console.log('disconnected:', d);
