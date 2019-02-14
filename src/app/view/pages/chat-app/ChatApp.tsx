@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { ChatRoom } from '../../organisms/chat-room/ChatRoom';
+import { ChatRoom } from '../../organisms/chat-room';
 import { Lobby } from '../../organisms/lobby/Lobby';
 
 export const ChatApp = () => {
-
   const [room, setRoom] = React.useState<string | null>(null);
   const [author, setAuthor] = React.useState<string | null>(null);
   const leaveRoom = () => setRoom(null);

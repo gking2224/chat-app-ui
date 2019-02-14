@@ -1,4 +1,4 @@
-import { ChatRoomMessageEntity } from '@animando/chat-types'; // tslint:disable-line:no-implicit-dependencies
+import { ChatRoomMessageEntity } from '@animando/chat-types';
 import * as React from 'react';
 import './message.css';
 

@@ -1,4 +1,4 @@
-import { ChatRoomMessageEntity, WebsocketMessageResponse } from '@animando/chat-types'; // tslint:disable-line:no-implicit-dependencies max-line-length
+import { ChatRoomMessageEntity, WebsocketMessageResponse } from '@animando/chat-types';
 import * as React from 'react';
 
 export default (): [ReadonlyArray<ChatRoomMessageEntity>, (m: WebsocketMessageResponse) => void] => {
