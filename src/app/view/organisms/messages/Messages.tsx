@@ -1,4 +1,4 @@
-import { ChatRoomMessageEntity } from 'chat-types'; // tslint:disable-line:no-implicit-dependencies
+import { ChatRoomMessageEntity } from '@animando/chat-types'; // tslint:disable-line:no-implicit-dependencies
 import * as React from 'react';
 import withWebSocket, { WebsocketProps } from '../../../hoc/withWebSocket';
 import Message from '../../molecules/message/Message';

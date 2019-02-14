@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@animando/chat-types@^1.0.0":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@animando/chat-types/-/chat-types-1.0.2.tgz#7eb063c7694377f2093c49bca5c9efb2182b027f"
+  integrity sha512-Oy6hqz5t+jLrDWF16PZuz6A5yJtC0C+xehqnZWNTsrsOmioaV/00HTb8iURiM5SZ+QgGY7o5MZgpi9prtQg+9w==
+  dependencies:
+    runtypes "^3.1.2"
+
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"

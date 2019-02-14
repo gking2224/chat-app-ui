@@ -1,4 +1,4 @@
-import { validateWebsocketMessageResponse, WebsocketMessageRequest, WebsocketMessageResponse } from 'chat-types'; // tslint:disable-line:no-implicit-dependencies max-line-length
+import { validateWebsocketMessageResponse, WebsocketMessageRequest, WebsocketMessageResponse } from '@animando/chat-types'; // tslint:disable-line:no-implicit-dependencies max-line-length
 import * as React from 'react';
 import { WebsocketContext } from '../../../hoc/withWebSocket';
 import useMessages from '../../../hooks/use-messages';

@@ -1,4 +1,4 @@
-import { CreateRoomBody, CreateRoomResponse, validateCreateRoomResponse, validateGetRoomsResponse } from 'chat-types'; // tslint:disable-line no-implicit-dependencies max-line-length
+import { CreateRoomBody, CreateRoomResponse, validateCreateRoomResponse, validateGetRoomsResponse } from '@animando/chat-types'; // tslint:disable-line no-implicit-dependencies max-line-length
 
 const defaultUrl = '<unknown>';
 
