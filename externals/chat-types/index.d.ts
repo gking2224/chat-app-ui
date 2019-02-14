@@ -32,7 +32,7 @@ declare const _ChatRoomMessageEntity: import("runtypes").Intersect2<Record<{
     author: String;
 }>, Record<{
     messageId: String;
-    translation: import("runtypes").Union2<String, Literal<null>>;
+    translation: import("runtypes").Union2<import("runtypes").Union2<String, Literal<null>>, Literal<undefined>>;
     language: String;
 }>>;
 export declare type ChatRoomMessageEntity = Static<typeof _ChatRoomMessageEntity>;
@@ -53,7 +53,7 @@ declare const _NotifyNewMessage: Record<{
         author: String;
     }>, Record<{
         messageId: String;
-        translation: import("runtypes").Union2<String, Literal<null>>;
+        translation: import("runtypes").Union2<import("runtypes").Union2<String, Literal<null>>, Literal<undefined>>;
         language: String;
     }>>;
 }>;
@@ -66,7 +66,7 @@ declare const _InitRoomResponse: Record<{
         author: String;
     }>, Record<{
         messageId: String;
-        translation: import("runtypes").Union2<String, Literal<null>>;
+        translation: import("runtypes").Union2<import("runtypes").Union2<String, Literal<null>>, Literal<undefined>>;
         language: String;
     }>>>;
 }>;
@@ -79,7 +79,7 @@ declare const _WebsocketMessageResponse: import("runtypes").Union2<Record<{
         author: String;
     }>, Record<{
         messageId: String;
-        translation: import("runtypes").Union2<String, Literal<null>>;
+        translation: import("runtypes").Union2<import("runtypes").Union2<String, Literal<null>>, Literal<undefined>>;
         language: String;
     }>>>;
 }>, Record<{
@@ -90,7 +90,7 @@ declare const _WebsocketMessageResponse: import("runtypes").Union2<Record<{
         author: String;
     }>, Record<{
         messageId: String;
-        translation: import("runtypes").Union2<String, Literal<null>>;
+        translation: import("runtypes").Union2<import("runtypes").Union2<String, Literal<null>>, Literal<undefined>>;
         language: String;
     }>>;
 }>>;

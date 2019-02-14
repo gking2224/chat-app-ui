@@ -29,7 +29,7 @@ var _BaseChatRoomMessage = runtypes_1.Record({
 // -- ChatRoomMessageEntity -- //
 var _ChatRoomMessageEntity = _BaseChatRoomMessage.And(runtypes_1.Record({
     messageId: runtypes_1.String,
-    translation: runtypes_1.String.Or(runtypes_1.Null),
+    translation: runtypes_1.String.Or(runtypes_1.Null).Or(runtypes_1.Undefined),
     language: runtypes_1.String
 }));
 exports.validateChatRoomMessageEntity = function (m) { return _ChatRoomMessageEntity.check(m); };
