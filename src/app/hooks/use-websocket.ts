@@ -24,18 +24,15 @@ export default <S, R>(
   };
   const onOpen = (c: any) => {
     setConnectionStatus('connected');
-    console.log('connected:', c);
     if (onConnect) onConnect();
   };
   const onError = (e: any) => {
-    console.log('error:', e);
+    console.error(e);
   };
   const onMessage = (m: any) => {
-    console.log('message received:', m);
     if (m) onMessageReceived(validateResponse(JSON.parse(m.data)));
   };
   const onClose = (d: any) => {
-    console.log('disconnected:', d);
     disconnect();
   };
 
@@ -47,7 +44,6 @@ export default <S, R>(
 
   React.useEffect(() => {
     if (wsConnectionRef.current === null) {
-      console.log('connecting');
       const ws = new WebSocket(wsUrl(room, author));
 
       ws.onopen = onOpen; // tslint:disable-line:no-object-mutation
@@ -58,11 +54,8 @@ export default <S, R>(
     }
     return () => {
       if (wsConnectionRef.current !== null) {
-        console.log('disconnecting');
         setConnectionStatus('disconnecting');
         wsConnectionRef.current.close(1000);
-      } else {
-        console.log('unmounting - no need to disconnect');
       }
     };
   }, []);
