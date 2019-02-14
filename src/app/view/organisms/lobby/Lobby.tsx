@@ -32,7 +32,7 @@ export const Lobby = (props: LobbyProps) => {
 
   return (
     <div>
-      <h2>Lobby</h2>
+      <h2>Lobby v2</h2>
       <div>
         <SelectRoom rooms={allRooms} selectedRoom={selectedRoom} onChange={setRoom} />
         <CreateNewRoom onCreateNewRoom={onCreateNewRoom} canCreateRoom={canCreateRoom} />
