@@ -1,3 +1,5 @@
+import './lobby.css';
+
 import * as React from 'react';
 import { createRoom, getRooms } from '../../../handlers/message-handlers';
 import useInputBoundState from '../../../hooks/use-input-value';
@@ -31,19 +33,21 @@ export const Lobby = (props: LobbyProps) => {
   const joinRoom = () => props.onJoinRoom(selectedRoom, author);
 
   return (
-    <div>
-      <h2>Lobby v2</h2>
-      <div>
-        <SelectRoom rooms={allRooms} selectedRoom={selectedRoom} onChange={setRoom} />
-        <CreateNewRoom onCreateNewRoom={onCreateNewRoom} canCreateRoom={canCreateRoom} />
-      </div>
-      <div>
-        <label>
-          Username
+    <div className={'lobby-ctr'}>
+      <div className={'lobby'}>
+        <h2>Lobby</h2>
+        <div>
+          <SelectRoom rooms={allRooms} selectedRoom={selectedRoom} onChange={setRoom} />
+          <CreateNewRoom onCreateNewRoom={onCreateNewRoom} canCreateRoom={canCreateRoom} />
+        </div>
+        <div>
+          <label>
+            Username
           <input onChange={setAuthor} value={author} />
-        </label>
+          </label>
+        </div>
+        <button onClick={joinRoom} disabled={!canJoin} type={'button'}>Join Room</button>
       </div>
-      <button onClick={joinRoom} disabled={!canJoin} type={'button'}>Join Room</button>
     </div>
   );
 };
