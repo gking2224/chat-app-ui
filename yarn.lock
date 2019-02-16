@@ -9,10 +9,10 @@
   dependencies:
     runtypes "^3.1.2"
 
-"@animando/cloud-app-logging@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@animando/cloud-app-logging/-/cloud-app-logging-1.0.5.tgz#19841051df321d492426ee18768364c1a644c9ae"
-  integrity sha512-fM1BdnYUH3chc+Qv2Wz1bChqP75+ng/2wheJm6SSQibRc+f1t+p/G2o44Y22cyyC2awfY6gL74ytxiBTgKLnXQ==
+"@animando/cloud-app-logging@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@animando/cloud-app-logging/-/cloud-app-logging-1.0.9.tgz#55da50efebd8dfb84b4c1eed7024d801d0ec88ea"
+  integrity sha512-dFwUKhoK18vUrza299WxRi4d39skEUrZ1JcYeqsshMhCBsypvWghYkdow9zLFzlOasQWnEGQcdDk79Ad4eVmnw==
   dependencies:
     "@types/node" "^11.9.4"
     runtypes "^3.1.2"
