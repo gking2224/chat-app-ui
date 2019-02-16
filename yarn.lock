@@ -9,6 +9,14 @@
   dependencies:
     runtypes "^3.1.2"
 
+"@animando/cloud-app-logging@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@animando/cloud-app-logging/-/cloud-app-logging-1.0.5.tgz#19841051df321d492426ee18768364c1a644c9ae"
+  integrity sha512-fM1BdnYUH3chc+Qv2Wz1bChqP75+ng/2wheJm6SSQibRc+f1t+p/G2o44Y22cyyC2awfY6gL74ytxiBTgKLnXQ==
+  dependencies:
+    "@types/node" "^11.9.4"
+    runtypes "^3.1.2"
+
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
@@ -142,6 +150,11 @@
   version "10.12.21"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.21.tgz#7e8a0c34cf29f4e17a36e9bd0ea72d45ba03908e"
   integrity sha512-CBgLNk4o3XMnqMc0rhb6lc77IwShMEglz05deDcn2lQxyXEZivfwgYJu7SMha9V5XcrP6qZuevTHV/QrN2vjKQ==
+
+"@types/node@^11.9.4":
+  version "11.9.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.9.4.tgz#ceb0048a546db453f6248f2d1d95e937a6f00a14"
+  integrity sha512-Zl8dGvAcEmadgs1tmSPcvwzO1YRsz38bVJQvH1RvRqSR9/5n61Q1ktcDL0ht3FXWR+ZpVmXVwN1LuH4Ax23NsA==
 
 "@types/prop-types@*":
   version "15.5.8"
