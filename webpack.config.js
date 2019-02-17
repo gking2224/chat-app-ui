@@ -37,16 +37,12 @@ const webpackConfig = isProd => {
       new HtmlWebpackPlugin({
         template: path.resolve(dirs.src, 'html/index.html'),
       }),
-    ],
-  });
-  if (!isProd) {
-    config.plugins.push(
       new DotenvPlugin({
         path: path.resolve(rootDir, '.env'),
         sample: path.resolve(rootDir, '.env.sample'),
       })
-    )
-  }
+    ],
+  });
   return config;
 }
 
