@@ -30,6 +30,9 @@ export default <S, R>(
     console.error(e);
   };
   const onMessage = (m: any) => {
+    console.log(typeof m.data);
+    console.log(m.data);
+    console.log(`Received message: ${JSON.stringify(m.data)}`);
     if (m) onMessageReceived(validateResponse(JSON.parse(m.data)));
   };
   const onClose = (d: any) => {

@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@animando/chat-types@^1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@animando/chat-types/-/chat-types-1.0.2.tgz#7eb063c7694377f2093c49bca5c9efb2182b027f"
-  integrity sha512-Oy6hqz5t+jLrDWF16PZuz6A5yJtC0C+xehqnZWNTsrsOmioaV/00HTb8iURiM5SZ+QgGY7o5MZgpi9prtQg+9w==
+"@animando/chat-types@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@animando/chat-types/-/chat-types-1.0.3.tgz#9e649bf30ce7a81484f715e628c9222cafc36591"
+  integrity sha512-2K9QBkhnObk4Zpsv5JArYY5MNpuApyGVz8mvk8My6udN3mErirUccCnmjcz0zw7kqD448ePOoeLqznqe6V2/tQ==
   dependencies:
     runtypes "^3.1.2"
 
-"@animando/cloud-app-logging@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@animando/cloud-app-logging/-/cloud-app-logging-1.0.9.tgz#55da50efebd8dfb84b4c1eed7024d801d0ec88ea"
-  integrity sha512-dFwUKhoK18vUrza299WxRi4d39skEUrZ1JcYeqsshMhCBsypvWghYkdow9zLFzlOasQWnEGQcdDk79Ad4eVmnw==
+"@animando/cloud-app-logging@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@animando/cloud-app-logging/-/cloud-app-logging-1.0.11.tgz#48d6967b7c73bcbc65fd43ab82e3ebbb607d9c7c"
+  integrity sha512-KNuu9hEg8VYvgIG1qCnSR05c3MpAbc6PkDBcKp983I6Z1V7UmQUEzR7m91BJxvY2R2ZJvwgbf/EcqHpvl6RDgg==
   dependencies:
     "@types/node" "^11.9.4"
     runtypes "^3.1.2"

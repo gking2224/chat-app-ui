@@ -10,11 +10,16 @@ const Message = (props: MessageProps) => {
   const { message } = props;
   return (
     <div className={'message'}>
-      <div>
+      <div className={'message__header'}>
         <span className={'message__author'}>{message.author}</span>
-        <span className={'message__message'}>{message.message} [{message.language}]</span>
+        <span className={'message__timestamp'}>
+          {new Date(message.timestamp).toLocaleDateString()} {new Date(message.timestamp).toLocaleTimeString()}
+        </span>
       </div>
-      {message.translation && <p className={'message__translation'}>({message.translation})</p>}
+      <div className={'message__message-ctr'}>
+        <p className={'message__message'}>{message.message} [{message.language}]</p>
+        {message.translation && <p className={'message__translation'}>({message.translation})</p>}
+      </div>
     </div>
   );
 };

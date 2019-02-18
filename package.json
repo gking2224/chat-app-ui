@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@animando/chat-types": "^1.0.0",
-    "@animando/cloud-app-logging": "^1.0.9",
+    "@animando/chat-types": "^1.0.3",
+    "@animando/cloud-app-logging": "^1.0.11",
     "aws-sdk": "^2.403.0",
     "css-loader": "^2.1.0",
     "react": "^16.8.1",
